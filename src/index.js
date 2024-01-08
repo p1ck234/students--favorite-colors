@@ -31,7 +31,8 @@ const initEventListener = () => {
 const initDeleteButtons = () => {
   const deleteButtonsElements = document.querySelectorAll(".button__delete");
   for (const deleteButton of deleteButtonsElements) {
-    deleteButton.addEventListener("click", () => {
+    deleteButton.addEventListener("click", (event) => {
+      event.stopPropagation();
       console.log("Удаляюсь...");
       const index = deleteButton.dataset.index;
       students.splice(index, 1);
@@ -65,7 +66,11 @@ buttonElement.addEventListener("click", () => {
     return;
   }
   students.push({
-    name: nameInputElement.value,
+    name: nameInputElement.value
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll("&", "&amp;")
+      .replaceAll('"', "&quot;"),
     color: colorInputElement.value,
   });
 
