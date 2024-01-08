@@ -22,7 +22,8 @@ const initEventListener = () => {
   const studensElements = document.querySelectorAll(".student");
   for (const studentElement of studensElements) {
     studentElement.addEventListener("click", () => {
-      console.log("1");
+      let color = studentElement.dataset.color;
+      alert(`Любимый цвет: ${color}`);
     });
   }
 };
@@ -30,7 +31,8 @@ const initEventListener = () => {
 const initDeleteButtons = () => {
   const deleteButtonsElements = document.querySelectorAll(".button__delete");
   for (const deleteButton of deleteButtonsElements) {
-    deleteButton.addEventListener("click", () => {
+    deleteButton.addEventListener("click", (event) => {
+      event.stopPropagation();
       console.log("Удаляюсь...");
       const index = deleteButton.dataset.index;
       students.splice(index, 1);
@@ -42,11 +44,9 @@ const initDeleteButtons = () => {
 const renderStudents = () => {
   const studentsHTML = students
     .map((student, index) => {
-      return `<li class="student">
+      return `<li class="student" data-color="${student.color}">
         <p class="student-name">
-          ${student.name}, любимый цвет
-          <span style="color: ${student.color}"> ${student.color}</span>
-        </p>
+          ${student.name} </p>
         <button data-index="${index}" class="button button__delete">Удалить</button>
       </li>`;
     })
@@ -66,7 +66,11 @@ buttonElement.addEventListener("click", () => {
     return;
   }
   students.push({
-    name: nameInputElement.value,
+    name: nameInputElement.value
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll("&", "&amp;")
+      .replaceAll('"', "&quot;"),
     color: colorInputElement.value,
   });
 
