@@ -31,11 +31,11 @@
   align-items: center;
 }
 
-/* .student:hover {
-      background-color: rgba(120, 120, 120, 0.3);
-      transition: 300ms;
-      cursor: pointer;
-    } */
+.student:hover {
+  background-color: rgba(120, 120, 120, 0.3);
+  transition: 300ms;
+  cursor: pointer;
+}
 
 .student-name {
   margin: 0;

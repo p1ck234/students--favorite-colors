@@ -47,7 +47,7 @@ const renderStudents = () => {
           ${student.name}, любимый цвет
           <span style="color: ${student.color}"> ${student.color}</span>
         </p>
-        <button data-index="${index}" class="button__delete">Удалить</button>
+        <button data-index="${index}" class="button button__delete">Удалить</button>
       </li>`;
     })
     .join("");
