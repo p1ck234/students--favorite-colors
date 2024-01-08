@@ -22,7 +22,8 @@ const initEventListener = () => {
   const studensElements = document.querySelectorAll(".student");
   for (const studentElement of studensElements) {
     studentElement.addEventListener("click", () => {
-      console.log("1");
+      let color = studentElement.dataset.color;
+      alert(`Любимый цвет: ${color}`);
     });
   }
 };
@@ -42,11 +43,9 @@ const initDeleteButtons = () => {
 const renderStudents = () => {
   const studentsHTML = students
     .map((student, index) => {
-      return `<li class="student">
+      return `<li class="student" data-color="${student.color}">
         <p class="student-name">
-          ${student.name}, любимый цвет
-          <span style="color: ${student.color}"> ${student.color}</span>
-        </p>
+          ${student.name} </p>
         <button data-index="${index}" class="button button__delete">Удалить</button>
       </li>`;
     })
